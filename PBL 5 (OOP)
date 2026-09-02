@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+// Volume of cube
+int volume(int side)
+{
+    return side * side * side;
+}
+
+// Volume of cuboid
+int volume(int length, int breadth, int height)
+{
+    return length * breadth * height;
+}
+
+int main()
+{
+    int side, length, breadth, height;
+
+    cout << "Enter side of cube: ";
+    cin >> side;
+
+    cout << "Volume of cube = " << volume(side) << endl;
+
+    cout << "Enter length, breadth and height of cuboid: ";
+    cin >> length >> breadth >> height;
+
+    cout << "Volume of cuboid = "
+         << volume(length, breadth, height) << endl;
+
+    return 0;
+}
