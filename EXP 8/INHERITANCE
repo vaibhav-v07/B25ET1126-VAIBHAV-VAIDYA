@@ -1,0 +1,97 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class for personal details
+class PersonalDetails {
+protected:
+    int empId;
+    string name;
+    int age;
+
+public:
+    void getPersonalDetails() {
+        cout << "Enter Employee ID: ";
+        cin >> empId;
+
+        cout << "Enter Employee Name: ";
+        cin.ignore();
+        getline(cin, name);
+
+        cout << "Enter Age: ";
+        cin >> age;
+    }
+
+    void displayPersonalDetails() {
+        cout << "\nEmployee ID   : " << empId;
+        cout << "\nEmployee Name : " << name;
+        cout << "\nAge           : " << age;
+    }
+};
+
+// Base class for performance details
+class PerformanceDetails {
+protected:
+    float productivity;
+    float quality;
+    float teamwork;
+
+public:
+    void getPerformanceDetails() {
+        cout << "\n\nEnter Productivity Score (0-100): ";
+        cin >> productivity;
+
+        cout << "Enter Quality Score (0-100): ";
+        cin >> quality;
+
+        cout << "Enter Teamwork Score (0-100): ";
+        cin >> teamwork;
+    }
+
+    float calculateAverage() {
+        return (productivity + quality + teamwork) / 3;
+    }
+
+    char calculateGrade() {
+        float average = calculateAverage();
+
+        if (average >= 90)
+            return 'A';
+        else if (average >= 75)
+            return 'B';
+        else if (average >= 60)
+            return 'C';
+        else if (average >= 50)
+            return 'D';
+        else
+            return 'F';
+    }
+};
+
+// Multiple inheritance
+class Employee : public PersonalDetails, public PerformanceDetails {
+public:
+    void displayEmployeeDetails() {
+        displayPersonalDetails();
+
+        float average = calculateAverage();
+        char grade = calculateGrade();
+
+        cout << "\nAverage Performance: " << average;
+        cout << "\nPerformance Grade  : " << grade << endl;
+    }
+};
+
+int main() {
+    Employee emp;
+
+    cout << "===== Employee Details =====\n";
+
+    emp.getPersonalDetails();
+    emp.getPerformanceDetails();
+
+    cout << "\n===== Employee Performance Report =====";
+    emp.displayEmployeeDetails();
+
+    return 0;
+}
