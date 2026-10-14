@@ -1,0 +1,49 @@
+
+#include <iostream>
+using namespace std;
+
+// Base class
+class BankAccount
+{
+public:
+    virtual void calculateInterest()
+    {
+        cout << "Calculating bank account interest" << endl;
+    }
+};
+
+// Derived class: SavingsAccount
+class SavingsAccount : public BankAccount
+{
+public:
+    void calculateInterest() override
+    {
+        cout << "Savings Account Interest: 5%" << endl;
+    }
+};
+
+// Derived class: CurrentAccount
+class CurrentAccount : public BankAccount
+{
+public:
+    void calculateInterest() override
+    {
+        cout << "Current Account Interest: 2%" << endl;
+    }
+};
+
+int main()
+{
+    BankAccount *account;
+
+    SavingsAccount s;
+    CurrentAccount c;
+
+    account = &s;
+    account->calculateInterest();
+
+    account = &c;
+    account->calculateInterest();
+
+    return 0;
+}
