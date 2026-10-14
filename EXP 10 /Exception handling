@@ -1,0 +1,31 @@
+#include <iostream>  
+using namespace std; 
+int main() {
+    double balance = 5000, withdraw;
+    // Ask the user to enter the withdrawal amount
+    cout << "Enter amount to withdraw: ";
+    cin >> withdraw;
+    try {
+        if (withdraw > balance) {
+
+            // Throw an exception if the balance is insufficient
+            throw "Insufficient bank balance!";
+        }
+
+        // Deduct the withdrawal amount from the bank balance
+        balance -= withdraw;
+
+        // Display a success message
+        cout << "Withdrawal successful." << endl;
+
+        // Display the remaining bank balance
+        cout << "Remaining balance: Rs. " << balance << endl;
+    }
+
+    // Catch the exception thrown as a string message
+    catch (const char* msg) {
+
+        cout << "Exception: " << msg << endl;
+    }
+    return 0;
+}
